@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-slide-up: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  --animate-slide-down: slide-down 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  --animate-fade-in: fade-in 0.22s ease-out both;
+  --animate-scale-in: scale-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer base {
+  body {
+    margin: 0;
+  }
+
+  #root {
+    min-height: 100dvh;
+  }
+}
+
+@layer components {
+  .surface {
+    @apply border border-zinc-200/90 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none transition-[box-shadow,border-color]
+      placeholder:text-zinc-400
+      focus:border-violet-400 focus:ring-2 focus:ring-violet-400/25
+      dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100 dark:placeholder:text-zinc-500
+      dark:focus:border-violet-500 dark:focus:ring-violet-500/25;
+  }
+
+  .chip {
+    @apply rounded-md px-2.5 py-1 text-xs font-medium transition-colors;
+  }
+
+  .chip-inactive {
+    @apply text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200;
+  }
+
+  .chip-active {
+    @apply bg-violet-100 text-violet-800 dark:bg-violet-950/70 dark:text-violet-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 rounded-lg bg-violet-600 px-3 py-2 text-xs font-medium text-white shadow-sm
+      transition-colors hover:bg-violet-700 active:bg-violet-800
+      dark:bg-violet-600 dark:hover:bg-violet-500 cursor-pointer;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-xs font-medium text-zinc-600 cursor-pointer
+      transition-colors hover:bg-zinc-100 hover:text-zinc-900
+      dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center rounded-lg bg-red-600 px-3 py-2 text-xs font-medium text-white
+      transition-colors hover:bg-red-700 active:bg-red-800;
+  }
+}
